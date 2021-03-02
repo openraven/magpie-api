@@ -3,32 +3,32 @@ package io.openraven.nightglow.api;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiscoveryEnvelope {
+public class NGEnvelope {
 
-  public static DiscoveryEnvelope of(DiscoveryEnvelope current, String pluginId, Object obj) {
+  public static NGEnvelope of(NGEnvelope current, String pluginId, Object obj) {
     List<String> newPath = new ArrayList<>(current.pluginPath);
     newPath.add(pluginId);
-    return new DiscoveryEnvelope(current.getSession(), newPath, obj);
+    return new NGEnvelope(current.getSession(), newPath, obj);
   }
 
   private final Session session;
   private final List<String> pluginPath;
-  private final Object obj;
+  private final Object contents;
   private final String className;
 
-  public DiscoveryEnvelope(Session session, List<String> pluginPath, Object obj) {
+  public NGEnvelope(Session session, List<String> pluginPath, Object contents) {
     this.session = session;
     this.pluginPath = pluginPath;
-    this.obj = obj;
-    this.className = obj.getClass().getName();
+    this.contents = contents;
+    this.className = contents.getClass().getName();
   }
 
   public List<String> getPluginPath() {
     return pluginPath;
   }
 
-  public Object getObj() {
-    return obj;
+  public Object getContents() {
+    return contents;
   }
 
   public String getClassName() {
