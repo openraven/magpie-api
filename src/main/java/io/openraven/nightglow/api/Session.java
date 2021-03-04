@@ -1,16 +1,25 @@
 package io.openraven.nightglow.api;
 
+import java.time.Instant;
 import java.util.UUID;
 
 public class Session {
-  private final String id = UUID.randomUUID().toString();
-  private final long createdAt = System.currentTimeMillis();
+  private  String id = UUID.randomUUID().toString();
+  private  Instant createdAt = Instant.now();
 
   public String getId() {
     return id;
   }
 
-  public long getCreatedAt() {
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Instant getCreatedAt() {
     return createdAt;
+  }
+
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
   }
 }

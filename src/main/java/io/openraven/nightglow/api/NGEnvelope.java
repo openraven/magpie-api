@@ -5,22 +5,22 @@ import java.util.List;
 
 public class NGEnvelope {
 
-  public static NGEnvelope of(NGEnvelope current, String pluginId, Object obj) {
+  public static NGEnvelope of(NGEnvelope current, String pluginId, Object contents) {
     List<String> newPath = new ArrayList<>(current.pluginPath);
     newPath.add(pluginId);
-    return new NGEnvelope(current.getSession(), newPath, obj);
+    return new NGEnvelope(current.getSession(), newPath, contents);
   }
 
   private final Session session;
   private final List<String> pluginPath;
   private final Object contents;
-  private final String className;
+  private final String contentClass;
 
   public NGEnvelope(Session session, List<String> pluginPath, Object contents) {
     this.session = session;
     this.pluginPath = pluginPath;
     this.contents = contents;
-    this.className = contents.getClass().getName();
+    this.contentClass = contents.getClass().getName();
   }
 
   public List<String> getPluginPath() {
@@ -31,8 +31,8 @@ public class NGEnvelope {
     return contents;
   }
 
-  public String getClassName() {
-    return className;
+  public String getContentClass() {
+    return contentClass;
   }
 
   public Session getSession() {
