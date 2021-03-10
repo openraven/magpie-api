@@ -22,4 +22,13 @@ public class Session {
   public void setCreatedAt(Instant createdAt) {
     this.createdAt = createdAt;
   }
+
+
+  @Override
+  public String toString() {
+    return "Session{" +
+        "id='" + id + '\'' +
+        ", createdAt=" + createdAt +
+        '}';
+  }
 }
