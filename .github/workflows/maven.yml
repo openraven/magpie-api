@@ -19,3 +19,5 @@ jobs:
           java-package: jdk
       - name: Build, Package, Verify, Deploy
         run: mvn -B clean package verify deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
