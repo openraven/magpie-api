@@ -26,4 +26,13 @@
       <version>${jackson.version}</version>
     </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>Nightglow API Repository</name>
+      <url>https://maven.pkg.github.com/openraven/nightglow-api</url>
+    </repository>
+  </distributionManagement>
+
 </project>
