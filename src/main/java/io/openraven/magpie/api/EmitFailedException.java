@@ -14,37 +14,26 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
-import java.time.Instant;
-import java.util.UUID;
+public class EmitFailedException extends Exception {
 
-public class Session {
-  private  String id = UUID.randomUUID().toString();
-  private  Instant createdAt = Instant.now();
-
-  public String getId() {
-    return id;
+  public EmitFailedException(String message) {
+    super(message);
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public EmitFailedException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  public Instant getCreatedAt() {
-    return createdAt;
+  public EmitFailedException(Throwable cause) {
+    super(cause);
   }
 
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
+  public EmitFailedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
   }
 
-
-  @Override
-  public String toString() {
-    return "Session{" +
-        "id='" + id + '\'' +
-        ", createdAt=" + createdAt +
-        '}';
+  public EmitFailedException() {
   }
 }

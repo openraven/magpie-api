@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NGEnvelope {
+public class MagpieEnvelope {
 
-  public static NGEnvelope of(NGEnvelope current, String pluginId, ObjectNode contents) {
+  public static MagpieEnvelope of(MagpieEnvelope current, String pluginId, ObjectNode contents) {
     List<String> newPath = new ArrayList<>(current.pluginPath);
     newPath.add(pluginId);
-    return new NGEnvelope(current.getSession(), newPath, contents);
+    return new MagpieEnvelope(current.getSession(), newPath, contents);
   }
 
   private Session session;
@@ -35,10 +35,10 @@ public class NGEnvelope {
   private String contentClass;
 
 
-  public NGEnvelope() {
+  public MagpieEnvelope() {
   }
 
-  public NGEnvelope(Session session, List<String> pluginPath, ObjectNode contents) {
+  public MagpieEnvelope(Session session, List<String> pluginPath, ObjectNode contents) {
     this.session = session;
     this.pluginPath = pluginPath;
     this.contents = contents;

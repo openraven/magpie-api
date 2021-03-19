@@ -14,12 +14,37 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
-import org.slf4j.Logger;
+import java.time.Instant;
+import java.util.UUID;
 
-public interface NightglowPlugin<T> {
-  String id();
-  void init(T config, Logger logger);
-  Class<T> configType();
+public class Session {
+  private  String id = UUID.randomUUID().toString();
+  private  Instant createdAt = Instant.now();
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  @Override
+  public String toString() {
+    return "Session{" +
+        "id='" + id + '\'' +
+        ", createdAt=" + createdAt +
+        '}';
+  }
 }

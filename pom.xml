@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.openraven.nightglow</groupId>
-  <artifactId>nightglow-api</artifactId>
+  <groupId>io.openraven.magpie</groupId>
+  <artifactId>magpie-api</artifactId>
   <version>0.1.0-SNAPSHOT</version>
 
   <properties>
@@ -30,8 +30,8 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>Nightglow API Repository</name>
-      <url>https://maven.pkg.github.com/openraven/nightglow-api</url>
+      <name>Magpie API Repository</name>
+      <url>https://maven.pkg.github.com/openraven/magpie-api</url>
     </repository>
   </distributionManagement>
 

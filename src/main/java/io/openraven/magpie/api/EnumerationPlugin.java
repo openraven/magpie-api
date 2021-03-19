@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
-public interface IntermediatePlugin<T> extends NightglowPlugin<T> {
-  void accept(NGEnvelope env, Emitter emitter);
+public interface EnumerationPlugin<T> extends MagpiePlugin<T> {
+  void discover(Session session, Emitter emitter);
 }

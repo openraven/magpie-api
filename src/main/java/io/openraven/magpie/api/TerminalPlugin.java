@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
-@FunctionalInterface
-public interface Emitter {
-  void emit(NGEnvelope env);
+public interface TerminalPlugin<T> extends MagpiePlugin<T> {
+  void accept(MagpieEnvelope env);
 }

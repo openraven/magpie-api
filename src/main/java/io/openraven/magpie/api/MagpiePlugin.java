@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-package io.openraven.nightglow.api;
+package io.openraven.magpie.api;
 
-public interface TerminalPlugin<T> extends NightglowPlugin<T>{
-  void accept(NGEnvelope env);
+import org.slf4j.Logger;
+
+public interface MagpiePlugin<T> {
+  String id();
+  void init(T config, Logger logger);
+  Class<T> configType();
 }
