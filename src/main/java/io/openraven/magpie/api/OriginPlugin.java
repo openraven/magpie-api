@@ -16,6 +16,6 @@
 
 package io.openraven.magpie.api;
 
-public interface EnumerationPlugin<T> extends MagpiePlugin<T> {
+public interface OriginPlugin<T> extends MagpiePlugin<T> {
   void discover(Session session, Emitter emitter);
 }
