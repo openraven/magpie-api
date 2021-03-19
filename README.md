@@ -2,6 +2,14 @@
 #### The plugin API for Open Raven's [Magpie Framework](https://github.com/openraven/magpie)
 
 
+## What is Magpie?
+Magpie is a free, open-source framework and a collection of community developed plugins that can be used to build complete end-to-end security tools such as a CSPM or Cloud Security Posture Manager. The project was originally created and is maintained by Open Raven. We build commercial cloud native data security tools and in doing so have learned a great deal about how to discover AWS assets and their security settings at scale. 
+
+We also heard that many people were frustrated with their existing security tools that couldn't be extended  and couldn't work well with their other systems, so decided to create this Magpie framework and refactor and sync our core AWS commercial discovery code as the first plugin. 
+
+We plan to actively contribute additional modules to make Magpie a credible free open source alternative to commercial CSPM’s and welcome the community to join us in adding to the framework and building plugins. 
+
+
 ## Magpie Architecture
 Magpie relies on plugins for all its integration capabilities.  They are the core of the framework and key to integration
 with both cloud providers and downstream processing and storage.
