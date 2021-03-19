@@ -1,5 +1,5 @@
 # Magpie API
-#### The plugin API for Open Raven's [Magpie Framework](https://github.com/openraven/magpie)
+#### The plugin API for the [Magpie Framework](https://github.com/openraven/magpie)
 
 
 ## What is Magpie?
