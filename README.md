@@ -23,7 +23,7 @@ In practice the default plugins use JSON (specifically Jackson JsonNode instance
 A complete Magpie instance requires only two layers, *Origin* and *Terminal*.  Zero or more *Intermediate* layers 
 may be added via configuration to perform certain actions.
 
-###Origin Plugins
+### Origin Plugins
 Origin plugins accept no discovery input and instead are responsible for kicking off the discovery chain. These
 plugins query a specific provider (AWS, GCP, Azure, etc) and emit their findings downstream.
 
@@ -39,7 +39,7 @@ ends when all OriginPlugins return from the `discover` call.
 The generic `<T>` in the plugin interface definitions represent the configuration class each specific plugin should receive
 via the Magpie configration file.
 
-###Intermediate Plugins
+### Intermediate Plugins
 Intermediate plugins are optional logic that can perform a variety of tasks including schema transforms, filtering, or enhancement tasks on data
 emitted by the Origin layer.  They are optional and may be omitted if not needed.  
 
@@ -51,7 +51,7 @@ public interface IntermediatePlugin<T> extends MagpiePlugin<T> {
 The received `MagpieEnvelope` is the same data structured emitted from the OriginLayer, or in the case of stacked Intermediate layers,
 what was emitted by the Intermediate layer above it.
 
-###Terminal Plugins
+### Terminal Plugins
 Terminal plugins are the inverse of Origin plugins, and can accept incoming `MagpieEnvelope` objects but are responsible for
 exfiltrating the data with its own logic, whether to an RDBMS, MQ, static files, etc.
 ```Java 
