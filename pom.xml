@@ -13,6 +13,30 @@
     <maven.compiler.target>11</maven.compiler.target>
     <jackson.version>2.12.1</jackson.version>
   </properties>
+  <organization></organization>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>git@github.com:openraven/magpie-api.git</connection>
+    <developerConnection>git@github.com:openraven/magpie-api.git</developerConnection>
+    <url>https://github.com/openraven/magpie-api.git</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Jason Nichols</name>
+      <email>jason@openraven.com</email>
+      <organization>Open Raven Inc</organization>
+      <organizationUrl>https://openraven.com</organizationUrl>
+    </developer>
+  </developers>
 
   <dependencies>
     <dependency>
@@ -34,5 +58,38 @@
       <url>https://maven.pkg.github.com/openraven/magpie-api</url>
     </repository>
   </distributionManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>2.0.0</version>
+        <configuration>
+          <failOnMissingHeader>true</failOnMissingHeader>
+          <verbose>true</verbose>
+          <organizationName>Open Raven Inc</organizationName>
+          <inceptionYear>2021</inceptionYear>
+          <licenseName>apache_v2</licenseName>
+          <projectName>Magpie API</projectName>
+          <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>update-file-header</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <roots>
+                <root>src/main/java</root>
+                <root>src/test</root>
+              </roots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
