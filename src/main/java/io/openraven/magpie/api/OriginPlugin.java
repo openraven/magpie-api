@@ -20,6 +20,21 @@
 
 package io.openraven.magpie.api;
 
+import org.slf4j.Logger;
+
+/**
+ * OriginPlugin kicks off the discovery process and emits discovered assets via the supplied Emitter.   {@link #discover(Session, Emitter) discover}
+ * is invoked once per session. An OriginPlugin may emit any number of assets by calling {@link Emitter#emit(MagpieEnvelope) Emitter.emit}
+ * zero or more times.
+ * @param <T> The configuration object class to be passed into the {@link MagpiePlugin#init(Object config, Logger logger)}  init} method.  This is a developer-defined
+ *           Jackson-serializable POJO and should be distributed with the plugin.
+ * @author Jason Nichols (jason@openraven.com)
+ */
 public interface OriginPlugin<T> extends MagpiePlugin<T> {
+  /**
+   * Kicks off the a discovery session.
+   * @param session The unique {@link Session} for this discovery session.
+   * @param emitter The emitter used to pass discovered assets into the discovery pipeline.
+   */
   void discover(Session session, Emitter emitter);
 }

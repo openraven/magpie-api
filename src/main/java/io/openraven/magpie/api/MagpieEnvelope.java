@@ -25,8 +25,20 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Jackson-serializable envelope that is passed from layer to layer via plugin emitters and acceptors.
+ * @author Jason Nichols (jason@openraven.com)
+ */
 public class MagpieEnvelope {
 
+  /**
+   * {@link IntermediatePlugin} implementations should use this static factory method to create a new envelope that derives
+   * from an existing envelope.  This ensures the continuity of the envelops pluginPath.
+   * @param current The currently received envelope that the plugin is processing.
+   * @param pluginId The ID of the current plugin
+   * @param contents The contents (preferably JSON) to be passed downstream to the next layer.
+   * @return The newly derived envelope.
+   */
   public static MagpieEnvelope of(MagpieEnvelope current, String pluginId, ObjectNode contents) {
     List<String> newPath = new ArrayList<>(current.pluginPath);
     newPath.add(pluginId);
@@ -57,6 +69,12 @@ public class MagpieEnvelope {
     this.session = session;
   }
 
+  /**
+   * The pluginPath list represents this envelope's path through the Magpie framework. Each plugin that operates
+   * on data should append it's ID to the ordered list. This allows downstream plugins to make decisions based on
+   * expected schemas for upstream plugins or sub-services.
+   * @return
+   */
   public List<String> getPluginPath() {
     return pluginPath;
   }
