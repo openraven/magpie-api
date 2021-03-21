@@ -16,7 +16,7 @@ with both cloud providers and downstream processing and storage.
 
 *Magpie is essentially a series of layers separated by FIFOs.*
 
-Depending on the configuration, these FIFOs are either **1) Java queues** (in the default configuratgion) or 
+Depending on the configuration, these FIFOs are either **1) Java queues** (in the default configuration) or 
 **2) Kafka queues**.  Using Kafka queues allows Magpie to run in a distributed and highly scalable fashion where
 each layer may exist on separate compute instances.
 
@@ -45,7 +45,7 @@ public interface OriginPlugin<T> extends MagpiePlugin<T> {
 ends when all OriginPlugins return from the `discover` call.
 
 The generic `<T>` in the plugin interface definitions represent the configuration class each specific plugin should receive
-via the Magpie configration file.
+via the Magpie configuration file.
 
 ### Intermediate Plugins
 Intermediate plugins are optional logic that can perform a variety of tasks including schema transforms, filtering, or enhancement tasks on data
