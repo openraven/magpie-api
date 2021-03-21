@@ -20,7 +20,20 @@
 
 package io.openraven.magpie.api;
 
+/**
+ * <p>Emitter represents an abstract method of emitting discovery envelopes through the Magpie pipeline.  Plugin
+ * implementation need not be aware of how envelopes traverse the pipeline or where the next destination is.</p>
+ *
+ * <p>A plugin may emit 0+ envelopes for each discovery/processing invocation.  It is not recommended that
+ * plugins attempt to collect multiple envelopes from upstream as Magpie makes no guarantee reception of
+ * all envelopes by a single plugin when multiple plugins exist on a single layer.</p>
+ */
 @FunctionalInterface
 public interface Emitter {
+
+  /**
+   * Emit an envelope into the pipeline.  A plugin may emit an arbitrary number of envelopes.
+   * @param env The envelope being emitted into the pipeline.
+   */
   void emit(MagpieEnvelope env);
 }
