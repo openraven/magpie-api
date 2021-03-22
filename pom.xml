@@ -23,8 +23,8 @@
   </licenses>
 
   <scm>
-    <connection>git@github.com:openraven/magpie-api.git</connection>
-    <developerConnection>git@github.com:openraven/magpie-api.git</developerConnection>
+    <connection>scm:git:git@github.com:openraven/magpie-api.git</connection>
+    <developerConnection>scm:git:git@github.com:openraven/magpie-api.git</developerConnection>
     <url>https://github.com/openraven/magpie-api.git</url>
   </scm>
 
