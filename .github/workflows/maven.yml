@@ -17,7 +17,7 @@ jobs:
         with:
           java-version: 11
           java-package: jdk
-      - name: Build, Package, Verify, Deploy
-        run: mvn -B clean package license:check-file-header deploy
+      - name: Build, Package, Verify
+        run: mvn -B clean package license:check-file-header
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -144,15 +144,8 @@
                   <goal>sign</goal>
                 </goals>
                 <configuration>
-<!--                  <useAgent>true</useAgent>-->
-                  <gpgArguments>
-<!--                    <arg>&#45;&#45;batch</arg>-->
-<!--                    <arg>&#45;&#45;pinentry-mode</arg>-->
-<!--                    <arg>loopback</arg>-->
-                  </gpgArguments>
                   <passphrase>${env.OSSRH_GPG_PASSPHRASE}</passphrase>
                   <keyname>${env.OSSRH_GPG_KEYNAME}</keyname>
-<!--                  <passphraseServerId>${env.OSSRH_GPG_KEYNAME}</passphraseServerId>-->
                 </configuration>
               </execution>
             </executions>
