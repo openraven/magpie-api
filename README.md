@@ -76,28 +76,14 @@ A jar may contain multiple plugins, and plugins may be enabled/disabled via conf
 
 ### Adding magpie-api as a project dependency
 
-#### Add the Magpie Repo via pom. (Maven)
-```xml
-<repositories>
-  <repository>
-    <id>central</id>
-    <url>https://repo1.maven.org/maven2</url>
-  </repository>
-  <repository>
-    <id>github-magpie-api</id>
-    <url>https://maven.pkg.github.com/openraven/magpie-api</url>
-    <snapshots>
-      <enabled>true</enabled>
-    </snapshots>
-  </repository>
-</repositories>
-```
+The Magpie API is available via Maven Central:
+
 #### Add the dependency
 ```xml
 <dependency>
   <groupId>io.openraven.magpie</groupId>
   <artifactId>magpie-api</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 #### Implement one or more of the plugin interfaces
