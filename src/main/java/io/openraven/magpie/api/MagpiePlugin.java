@@ -52,6 +52,8 @@ public interface MagpiePlugin<T> {
    */
   void init(T config, Logger logger);
 
+  default void shutdown() {}
+
   /**
    * The class of the configuration object passed to {@link #init(Object, Logger)}
    * @return
