@@ -4,7 +4,7 @@
 
   <groupId>io.openraven.magpie</groupId>
   <artifactId>magpie-api</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
+  <version>0.1.1-SNAPSHOT</version>
   <name>Open Raven Magpie API</name>
   <url>https://github.com/openraven/magpie-api</url>
   <description>Open Raven's Magpie Plugin API</description>
