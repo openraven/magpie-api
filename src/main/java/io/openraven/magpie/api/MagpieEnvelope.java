@@ -23,7 +23,9 @@ package io.openraven.magpie.api;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A Jackson-serializable envelope that is passed from layer to layer via plugin emitters and acceptors.
@@ -40,13 +42,16 @@ public class MagpieEnvelope {
    * @return The newly derived envelope.
    */
   public static MagpieEnvelope of(MagpieEnvelope current, String pluginId, ObjectNode contents) {
-    List<String> newPath = new ArrayList<>(current.pluginPath);
+    final List<String> newPath = new ArrayList<>(current.pluginPath);
     newPath.add(pluginId);
-    return new MagpieEnvelope(current.getSession(), newPath, contents);
+    final var env = new MagpieEnvelope(current.getSession(), newPath, contents);
+    env.setMetadata(new HashMap<>(current.getMetadata()));
+    return env;
   }
 
   private Session session;
   private List<String> pluginPath;
+  private Map<String, String> metadata = new HashMap<>();
   private ObjectNode contents;
   private String contentClass;
 
@@ -97,5 +102,13 @@ public class MagpieEnvelope {
 
   public void setContentClass(String contentClass) {
     this.contentClass = contentClass;
+  }
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
   }
 }
