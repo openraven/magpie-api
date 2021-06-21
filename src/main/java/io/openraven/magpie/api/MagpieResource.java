@@ -248,11 +248,6 @@ public class MagpieResource {
       this.discoveryMeta = mapper.createObjectNode();
     }
 
-    public MagpieResourceBuilder withAssetId(String assetId) {
-      this.assetId = assetId;
-      return this;
-    }
-
     public MagpieResourceBuilder withResourceName(String resourceName) {
       this.resourceName = resourceName;
       return this;
