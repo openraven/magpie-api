@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ public class MagpieResource {
   public String resourceName;
   public String resourceId;
   public String resourceType;
-  public String region; //region
+  public String region;
   public String projectId;
   public String accountId;
   public Instant createdIso;
@@ -45,17 +45,23 @@ public class MagpieResource {
   public JsonNode tags;
   public JsonNode discoveryMeta;
 
-  private MagpieResource() {}
-
-  public MagpieResource(Object configuration, String region, String accountId, ObjectMapper mapper) {
-    this.region = region;
-    this.accountId = accountId;
-
-    this.configuration = mapper.valueToTree(configuration);
-    this.supplementaryConfiguration = mapper.createObjectNode();
-    this.tags = mapper.createObjectNode();
-
-    this.discoveryMeta = mapper.createObjectNode();
+  private MagpieResource(MagpieResourceBuilder builder) {
+    this.assetId = builder.assetId;
+    this.resourceName = builder.resourceName;
+    this.resourceId = builder.resourceId;
+    this.resourceType = builder.resourceType;
+    this.region = builder.region;
+    this.projectId = builder.projectId;
+    this.accountId = builder.accountId;
+    this.createdIso = builder.createdIso;
+    this.updatedIso = builder.updatedIso;
+    this.discoverySessionId = builder.discoverySessionId;
+    this.maxSizeInBytes = builder.maxSizeInBytes;
+    this.sizeInBytes = builder.sizeInBytes;
+    this.configuration = builder.configuration;
+    this.supplementaryConfiguration = builder.supplementaryConfiguration;
+    this.tags = builder.tags;
+    this.discoveryMeta = builder.discoveryMeta;
   }
 
   public ObjectNode toJsonNode(ObjectMapper mapper) {
@@ -209,5 +215,113 @@ public class MagpieResource {
 
   public void setDiscoveryMeta(JsonNode discoveryMeta) {
     this.discoveryMeta = discoveryMeta;
+  }
+
+  public static class MagpieResourceBuilder {
+    private String assetId;
+    private String resourceName;
+    private String resourceId;
+    private String resourceType;
+    private String region;
+    private String projectId;
+    private String accountId;
+    private Instant createdIso;
+    private Instant updatedIso = Instant.now();
+    private String discoverySessionId;
+    private Long maxSizeInBytes = null;
+    private Long sizeInBytes = null;
+
+    private JsonNode configuration;
+    private JsonNode supplementaryConfiguration;
+    private JsonNode tags;
+    private JsonNode discoveryMeta;
+
+    public MagpieResourceBuilder(String assetId) {
+      this.assetId = assetId;
+    }
+
+    public MagpieResourceBuilder withAssetId(String assetId) {
+      this.assetId = assetId;
+      return this;
+    }
+
+    public MagpieResourceBuilder withResourceName(String resourceName) {
+      this.resourceName = resourceName;
+      return this;
+    }
+
+    public MagpieResourceBuilder withResourceId(String resourceId) {
+      this.resourceId = resourceId;
+      return this;
+    }
+
+    public MagpieResourceBuilder withResourceType(String resourceType) {
+      this.resourceType = resourceType;
+      return this;
+    }
+
+    public MagpieResourceBuilder withRegion(String region) {
+      this.region = region;
+      return this;
+    }
+
+    public MagpieResourceBuilder withProjectId(String projectId) {
+      this.projectId = projectId;
+      return this;
+    }
+
+    public MagpieResourceBuilder withAccountId(String accountId) {
+      this.accountId = accountId;
+      return this;
+    }
+
+    public MagpieResourceBuilder withCreatedIso(Instant createdIso) {
+      this.createdIso = createdIso;
+      return this;
+    }
+
+    public MagpieResourceBuilder withUpdatedIso(Instant updatedIso) {
+      this.updatedIso = updatedIso;
+      return this;
+    }
+
+    public MagpieResourceBuilder withDiscoverySessionId(String discoverySessionId) {
+      this.discoverySessionId = discoverySessionId;
+      return this;
+    }
+
+    public MagpieResourceBuilder withMaxSizeInBytes(Long maxSizeInBytes) {
+      this.maxSizeInBytes = maxSizeInBytes;
+      return this;
+    }
+
+    public MagpieResourceBuilder withSizeInBytes(Long sizeInBytes) {
+      this.sizeInBytes = sizeInBytes;
+      return this;
+    }
+
+    public MagpieResourceBuilder withConfiguration(JsonNode configuration) {
+      this.configuration = configuration;
+      return this;
+    }
+
+    public MagpieResourceBuilder withSupplementaryConfiguration(JsonNode supplementaryConfiguration) {
+      this.supplementaryConfiguration = supplementaryConfiguration;
+      return this;
+    }
+
+    public MagpieResourceBuilder withTags(JsonNode tags) {
+      this.tags = tags;
+      return this;
+    }
+
+    public MagpieResourceBuilder withDiscoveryMeta(JsonNode discoveryMeta) {
+      this.discoveryMeta = discoveryMeta;
+      return this;
+    }
+
+    public MagpieResource build() {
+      return new MagpieResource(this);
+    }
   }
 }
