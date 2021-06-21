@@ -27,6 +27,7 @@ import io.openraven.magpie.api.utils.EncodedNamedUUIDGenerator;
 import java.time.Instant;
 
 public class MagpieResource {
+  private final ObjectMapper mapper;
   public String assetId;
   public String resourceName;
   public String resourceId;
@@ -62,9 +63,10 @@ public class MagpieResource {
     this.supplementaryConfiguration = builder.supplementaryConfiguration;
     this.tags = builder.tags;
     this.discoveryMeta = builder.discoveryMeta;
+    this.mapper = builder.mapper;
   }
 
-  public ObjectNode toJsonNode(ObjectMapper mapper) {
+  public ObjectNode toJsonNode() {
     var data = mapper.createObjectNode();
 
     data.put("documentId", EncodedNamedUUIDGenerator.getEncodedNamedUUID(assetId));
@@ -218,6 +220,7 @@ public class MagpieResource {
   }
 
   public static class MagpieResourceBuilder {
+    private final ObjectMapper mapper;
     private String assetId;
     private String resourceName;
     private String resourceId;
@@ -230,14 +233,19 @@ public class MagpieResource {
     private String discoverySessionId;
     private Long maxSizeInBytes = null;
     private Long sizeInBytes = null;
-
     private JsonNode configuration;
     private JsonNode supplementaryConfiguration;
     private JsonNode tags;
     private JsonNode discoveryMeta;
 
-    public MagpieResourceBuilder(String assetId) {
+    public MagpieResourceBuilder(ObjectMapper mapper, String assetId) {
       this.assetId = assetId;
+      this.mapper = mapper;
+
+      this.configuration = mapper.createObjectNode();
+      this.supplementaryConfiguration = mapper.createObjectNode();
+      this.tags = mapper.createObjectNode();
+      this.discoveryMeta = mapper.createObjectNode();
     }
 
     public MagpieResourceBuilder withAssetId(String assetId) {
