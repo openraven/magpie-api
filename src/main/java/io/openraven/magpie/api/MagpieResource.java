@@ -26,6 +26,8 @@ import io.openraven.magpie.api.utils.EncodedNamedUUIDGenerator;
 
 import java.time.Instant;
 
+import static io.openraven.magpie.api.utils.EncodedNamedUUIDGenerator.getEncodedNamedUUID;
+
 public class MagpieResource {
   private final ObjectMapper mapper;
   public String assetId;
@@ -69,7 +71,7 @@ public class MagpieResource {
   public ObjectNode toJsonNode() {
     var data = mapper.createObjectNode();
 
-    data.put("documentId", EncodedNamedUUIDGenerator.getEncodedNamedUUID(assetId));
+    data.put("documentId", getEncodedNamedUUID(assetId.concat(resourceType).concat(accountId)));
     data.put("assetId", assetId);
     data.put("resourceName", resourceName);
     data.put("resourceId", resourceId);
