@@ -69,7 +69,7 @@ public class MagpieAwsResource {
   public ObjectNode toJsonNode() {
     var data = mapper.createObjectNode();
 
-    data.put("documentId", getEncodedNamedUUID(arn.concat(resourceType).concat(awsAccountId)));
+    data.put("documentId", getEncodedNamedUUID(arn + resourceType + awsAccountId));
     data.put("arn", arn);
     data.put("resourceName", resourceName);
     data.put("resourceId", resourceId);

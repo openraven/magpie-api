@@ -34,8 +34,9 @@ public class MagpieGcpResource {
   public String resourceName;
   public String resourceId;
   public String resourceType;
+  public String region;
   public String projectId;
-  public String accountId;
+  public String gcpAccountId;
   public Instant createdIso;
   public Instant updatedIso = Instant.now();
   public String discoverySessionId;
@@ -54,7 +55,8 @@ public class MagpieGcpResource {
     this.resourceId = builder.resourceId;
     this.resourceType = builder.resourceType;
     this.projectId = builder.projectId;
-    this.accountId = builder.accountId;
+    this.gcpAccountId = builder.gcpAccountId;
+    this.region = builder.region;
     this.createdIso = builder.createdIso;
     this.updatedIso = builder.updatedIso;
     this.discoverySessionId = builder.discoverySessionId;
@@ -70,12 +72,12 @@ public class MagpieGcpResource {
   public ObjectNode toJsonNode() {
     var data = mapper.createObjectNode();
 
-    data.put("documentId", getEncodedNamedUUID(assetId.concat(resourceType).concat(accountId)));
+    data.put("documentId", getEncodedNamedUUID(assetId + resourceType + projectId));
     data.put("assetId", assetId);
     data.put("resourceName", resourceName);
     data.put("resourceId", resourceId);
     data.put("resourceType", resourceType);
-    data.put("accountId", accountId);
+    data.put("gcpAccountId", gcpAccountId);
     data.put("projectId", projectId);
     data.put("createdIso", createdIso == null ? null : createdIso.toString());
     data.put("updatedIso", updatedIso == null ? null : updatedIso.toString());
@@ -131,12 +133,12 @@ public class MagpieGcpResource {
     this.projectId = projectId;
   }
 
-  public String getAccountId() {
-    return accountId;
+  public String getGcpAccountId() {
+    return gcpAccountId;
   }
 
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
+  public void setGcpAccountId(String gcpAccountId) {
+    this.gcpAccountId = gcpAccountId;
   }
 
   public Instant getCreatedIso() {
@@ -219,7 +221,7 @@ public class MagpieGcpResource {
     private String resourceType;
     private String region;
     private String projectId;
-    private String accountId;
+    private String gcpAccountId;
     private Instant createdIso;
     private Instant updatedIso = Instant.now();
     private String discoverySessionId;
@@ -265,8 +267,8 @@ public class MagpieGcpResource {
       return this;
     }
 
-    public MagpieGcpResourceBuilder withAccountId(String accountId) {
-      this.accountId = accountId;
+    public MagpieGcpResourceBuilder withAccountId(String gcpAccountId) {
+      this.gcpAccountId = gcpAccountId;
       return this;
     }
 
