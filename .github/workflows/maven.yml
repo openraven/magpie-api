@@ -22,9 +22,9 @@ jobs:
               gpg --list-secret-keys --keyid-format LONG
         env:
           OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-          OSSRH_GPG_KEYNAME: ${{ secrets.OSSRH_GPG_KEYNAME }}
-          OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       - name: Build, Package, Verify
-        run: mvn clean package verify license:check-file-header -Possrh
+        run: mvn -B clean package verify license:check-file-header -Possrh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OSSRH_GPG_KEYNAME: ${{ secrets.OSSRH_GPG_KEYNAME }}
+          OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
