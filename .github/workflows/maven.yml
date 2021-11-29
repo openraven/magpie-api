@@ -25,6 +25,6 @@ jobs:
           OSSRH_GPG_KEYNAME: ${{ secrets.OSSRH_GPG_KEYNAME }}
           OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       - name: Build, Package, Verify
-        run: mvn -B clean package verify license:check-file-header -Possrh
+        run: mvn clean package verify license:check-file-header -Possrh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
