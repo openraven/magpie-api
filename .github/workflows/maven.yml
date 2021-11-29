@@ -2,14 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, gpg_test ]
   pull_request:
     branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -17,7 +16,15 @@ jobs:
         with:
           java-version: 11
           java-package: jdk
+      - name: Install GPG Signing Key
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+              gpg --list-secret-keys --keyid-format LONG
+        env:
+          OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+          OSSRH_GPG_KEYNAME: ${{ secrets.OSSRH_GPG_KEYNAME }}
+          OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       - name: Build, Package, Verify
-        run: mvn -B clean package license:check-file-header
+        run: mvn -B clean package verify license:check-file-header -Possrh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
